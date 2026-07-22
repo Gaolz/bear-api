@@ -28,6 +28,9 @@
 !/tmp/storage/
 !/tmp/storage/.keep
 
+# Ignore node_modules (from accidental npm runs).
+/node_modules
+
 # Ignore key files for decrypting credentials and more.
 /config/*.key
 
