@@ -57,7 +57,7 @@ RSpec.describe "Runs API", type: :request do
     it "returns 422 on invalid data" do
       post "/api/runs", params: { run: { date: nil, distance: nil } }, headers: headers
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
       body = JSON.parse(response.body)
       expect(body["errors"]).to be_present
     end

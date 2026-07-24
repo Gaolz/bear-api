@@ -14,7 +14,7 @@ module Api
       if run.save
         render json: { run: run_json(run) }, status: :created
       else
-        render json: { errors: run.errors.full_messages }, status: :unprocessable_entity
+        render json: { errors: run.errors.full_messages }, status: :unprocessable_content
       end
     end
 
@@ -22,7 +22,7 @@ module Api
       if @run.update(run_params)
         render json: { run: run_json(@run) }, status: :ok
       else
-        render json: { errors: @run.errors.full_messages }, status: :unprocessable_entity
+        render json: { errors: @run.errors.full_messages }, status: :unprocessable_content
       end
     end
 
