@@ -59,6 +59,10 @@ group :development, :test do
   gem "shoulda-matchers", "~> 6.2"
 end
 
+group :development do
+  gem "solargraph", require: false
+end
+
 group :test do
   # Code coverage
   gem "simplecov", require: false

@@ -1,0 +1,32 @@
+// Folder-specific settings
+//
+// For a full list of overridable settings, and general information on folder-specific settings,
+// see the documentation: https://zed.dev/docs/configuring-zed#settings-files
+{
+  "languages": {
+    "Ruby": {
+      "language_servers": [
+        "solargraph",
+        "rubocop",
+        "!ruby-lsp",
+        "..."
+      ]
+    }
+  },
+  "lsp": {
+    "solargraph": {
+      "binary": {
+        "path": "/home/garielgao/fun/code/ruby/bear-api/bin/solargraph-wrapper"
+      },
+      "initialization_options": {
+        "diagnostics": true,
+        "formatting": true
+      }
+    },
+    "rubocop": {
+      "binary": {
+        "path": "/home/garielgao/fun/code/ruby/bear-api/bin/rubocop-wrapper"
+      }
+    }
+  }
+}
