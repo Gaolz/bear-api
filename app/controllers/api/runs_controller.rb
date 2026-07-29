@@ -14,7 +14,7 @@ module Api
       if run.save
         render json: { run: run_json(run) }, status: :created
       else
-        render json: { errors: run.errors.full_messages }, status: :unprocessable_content
+        render json: { errors: run.errors.full_messages }, status: :unprocessable_entity
       end
     end
 
@@ -22,13 +22,17 @@ module Api
       if @run.update(run_params)
         render json: { run: run_json(@run) }, status: :ok
       else
-        render json: { errors: @run.errors.full_messages }, status: :unprocessable_content
+        render json: { errors: @run.errors.full_messages }, status: :unprocessable_entity
       end
+    rescue ActiveRecord::RecordNotFound
+      render json: { error: "Not found" }, status: :not_found
     end
 
     def destroy
       @run.destroy
       head :no_content
+    rescue ActiveRecord::RecordNotFound
+      render json: { error: "Not found" }, status: :not_found
     end
 
     private
