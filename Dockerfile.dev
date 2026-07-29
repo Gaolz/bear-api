@@ -1,0 +1,22 @@
+FROM ruby:3.3.9-slim
+
+WORKDIR /rails
+
+# Install dev dependencies
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y curl libjemalloc2 libvips build-essential libpq-dev git && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
+# Install gems
+COPY Gemfile Gemfile.lock ./
+RUN bundle install
+
+# Copy application
+COPY . .
+
+COPY bin/docker-entrypoint-dev /rails/bin/docker-entrypoint-dev
+RUN chmod +x /rails/bin/docker-entrypoint-dev
+
+EXPOSE 3000
+ENTRYPOINT ["/rails/bin/docker-entrypoint-dev"]
+CMD ["./bin/rails", "server", "-b", "0.0.0.0"]

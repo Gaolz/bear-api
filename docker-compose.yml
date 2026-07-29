@@ -1,0 +1,30 @@
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/bear_api_development
+      RAILS_ENV: development
+      SECRET_KEY_BASE: bbf2c5d433f1cab466239e7b6a27fd76e3d7b4bd2a7fe97ecdcbc8b39ffc3fcbe11d2df5284b49d1d2e6571912211d7b44a84111865a9cabfe91abb08aee012a
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    volumes:
+      - .:/rails
+      - bundle_cache:/usr/local/bundle
+
+volumes:
+  pgdata:
+  bundle_cache:
