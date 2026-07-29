@@ -56,7 +56,7 @@ group :development, :test do
   gem "factory_bot_rails", "~> 6.4"
 
   # One-liner matchers for models and controllers
-  gem "shoulda-matchers", "~> 6.2"
+  gem "shoulda-matchers", "~> 8.0"
 end
 
 group :development do
